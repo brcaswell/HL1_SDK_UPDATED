@@ -25,7 +25,7 @@ matrix:
                 - g++-multilib
                 - libgl1-mesa-dev
     - os: osx
-      compiler: clang
+      compiler: clang++
       before_script:
         - export CC=clang
         - export CPLUS=clang++
