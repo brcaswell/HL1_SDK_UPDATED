@@ -9,7 +9,7 @@ matrix:
       script: cd linux && make
       env: OPJ_CI_ARCH=i386
       addons:
-        api:
+        apt:
             packages:
                 - g++-multilib
                 - libgl1-mesa-dev
@@ -20,7 +20,7 @@ matrix:
       script: cd linux && make
       env: OPJ_CI_ARCH=i386
       addons:
-        api:
+        apt:
             packages:
                 - g++-multilib
                 - libgl1-mesa-dev
