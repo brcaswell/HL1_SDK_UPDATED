@@ -3,9 +3,9 @@ language: cpp
 matrix:
   include:
     - os: linux
-      dist: xenial
+      dist: focal
       compiler: gcc
-      name: "Ubuntu xenial"
+      name: "Ubuntu 20.04 LTS Focal Fossa"
       script: cd linux && make
       env: OPJ_CI_ARCH=i386
       addons:
@@ -19,9 +19,9 @@ matrix:
             - libpng12-dev:i386
             
     - os: linux
-      dist: trusty
+      dist: jammy
       compiler: gcc
-      name: "Ubuntu trusty"
+      name: "Ubuntu 22.04 Jammy Jellyfish"
       script: cd linux && make
       env: OPJ_CI_ARCH=i386
       addons:
@@ -32,6 +32,7 @@ matrix:
             - libc6-i386
             - libcurl4-openssl-dev:i386
             - libpng12-dev:i386
+
     - os: osx
       compiler: clang
       before_script:
