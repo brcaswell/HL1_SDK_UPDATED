@@ -1,60 +1,46 @@
 language: cpp
 
 matrix:
-  include:
-    - os: linux
-      dist: focal
-      compiler: gcc
-      name: "Ubuntu 20.04 LTS Focal Fossa"
-      script: cd linux && make
-      env: OPJ_CI_ARCH=i386
-      addons:
-        apt:
-          packages:
-            - gcc-multilib
-            - g++-multilib
-            - libc6-i386
-            - mesa-common-dev
-            - libcurl4-openssl-dev:i386
-            - libpng12-dev:i386
-            
+  include:  
     - os: linux
       dist: jammy
-      compiler: gcc
+      compiler: g++
       name: "Ubuntu 22.04 Jammy Jellyfish"
       script: cd linux && make
       env: OPJ_CI_ARCH=i386
       addons:
-        apt:
-          packages:
-            - gcc-multilib
-            - g++-multilib
-            - libc6-i386
-            - libcurl4-openssl-dev:i386
-            - libpng12-dev:i386
-
+        api:
+            packages:
+                - g++-multilib
+                - libgl1-mesa-dev
+    - os: linux
+      dist: focal
+      compiler: g++
+      name: "Ubuntu 20.04 LTS Focal Fossa"
+      script: cd linux && make
+      env: OPJ_CI_ARCH=i386
+      addons:
+        api:
+            packages:
+                - g++-multilib
+                - libgl1-mesa-dev
     - os: osx
       compiler: clang
       before_script:
         - export CC=clang
         - export CPLUS=clang++
-        - export MACOSX_DEPLOYMENT_TARGET=10.10
-      script: cd linux && make
-            
+        - export MACOSX_DEPLOYMENT_TARGET=10.13
+      script: cd linux && make            
   allow_failures:
     - os: linux
       dist: bionic
-      compiler: gcc
+      compiler: g++
       name: "Ubuntu bionic"
       script: cd main/source/linux && make
       env: OPJ_CI_ARCH=i386
       addons:
         apt:
           packages:
-            - gcc-multilib
             - g++-multilib
-            - libc6-i386
-            - mesa-common-dev
-            - libcurl4-openssl-dev
-            - libpng-dev  
+            - libgl1-mesa-dev
             
