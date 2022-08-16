@@ -7,40 +7,23 @@ matrix:
       compiler: g++
       name: "Ubuntu 22.04 Jammy Jellyfish"
       script: cd linux && make
-      env: OPJ_CI_ARCH=i386
-      addons:
-        apt:
-            packages:
-                - g++-multilib
-                - libgl1-mesa-dev
-    - os: linux
-      dist: focal
-      compiler: g++
-      name: "Ubuntu 20.04 LTS Focal Fossa"
-      script: cd linux && make
-      env: OPJ_CI_ARCH=i386
-      addons:
-        apt:
-            packages:
-                - g++-multilib
-                - libgl1-mesa-dev
-    - os: osx
-      compiler: clang++
-      before_script:
-        - export CC=clang
-        - export CPLUS=clang++
-        - export MACOSX_DEPLOYMENT_TARGET=10.13
-      script: cd linux && make            
-  allow_failures:
-    - os: linux
-      dist: bionic
-      compiler: g++
-      name: "Ubuntu bionic"
-      script: cd main/source/linux && make
-      env: OPJ_CI_ARCH=i386
       addons:
         apt:
           packages:
             - g++-multilib
             - libgl1-mesa-dev
+    - os: linux
+      dist: focal
+      compiler: g++
+      name: "Ubuntu 20.04 LTS Focal Fossa"
+      script: cd linux && make
+      addons:
+        apt:
+          packages:
+            - g++-multilib
+            - libgl1-mesa-dev    
+    - os: osx
+      osx_image: xcode10
+      compiler: clang++
+      script: cd linux && make
             
