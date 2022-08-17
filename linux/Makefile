@@ -45,9 +45,17 @@ BASE_CFLAGS+=-DNDEBUG -DPOSIX -D_POSIX -DLINUX -D_LINUX -DGNUC -DNO_MALLOC_OVERR
 SHLIBEXT=so
 SHLIBCFLAGS=
 ifeq "$(CFG)" "release"
-	SHLIBLDFLAGS="-shared -Wl,-map,$@_map.txt"
+	ifeq ($(OS),Darwin)
+		SHLIBLDFLAGS="-shared -Wl,-map,$@_map.txt"
+	else 
+		SHLIBLDFLAGS="-shared -Wl,-Map,$@_map.txt"
+	endif
 else
-	SHLIBLDFLAGS="-shared -gdwarf-2 -g2 -Wl,-map,$@_map.txt"
+	ifeq ($(OS),Darwin)
+		SHLIBLDFLAGS="-shared -gdwarf-2 -g2 -Wl,-map,$@_map.txt"
+	else 
+		SHLIBLDFLAGS="-shared -gdwarf-2 -g2 -Wl,-Map,$@_map.txt"
+	endif
 endif
 
 AR=ar
