@@ -22,7 +22,3 @@ matrix:
           packages:
             - g++-multilib
             - libgl1-mesa-dev    
-    - os: osx
-      compiler: clang++
-      script: cd linux && make
-            
